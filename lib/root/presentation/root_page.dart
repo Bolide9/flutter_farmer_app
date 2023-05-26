@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_farmer_app/cart/presentation/cart_page.dart';
 import 'package:flutter_farmer_app/catalog/presentation/catalog_page.dart';
-import 'package:flutter_farmer_app/home/home_page.dart';
+import 'package:flutter_farmer_app/home/presentation/home_page.dart';
 import 'package:flutter_farmer_app/profile/presentation/profile_page.dart';
 import 'package:flutter_farmer_app/ui/bottom_nav_bar.dart';
 

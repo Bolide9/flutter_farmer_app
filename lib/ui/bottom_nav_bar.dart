@@ -18,6 +18,8 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     double gap = 10;
 
+    double iconSize = 26;
+
     const padding = EdgeInsets.symmetric(
       horizontal: 18,
       vertical: 12,
@@ -44,9 +46,9 @@ class BottomNavBar extends StatelessWidget {
             tabs: [
               GButton(
                 gap: gap,
-                iconSize: 24,
                 text: 'Главная',
                 padding: padding,
+                iconSize: iconSize,
                 icon: LineIcons.home,
                 iconColor: Colors.black,
                 iconActiveColor: greenColor,
@@ -54,9 +56,9 @@ class BottomNavBar extends StatelessWidget {
               ),
               GButton(
                 gap: gap,
-                iconSize: 24,
                 text: 'Каталог',
                 padding: padding,
+                iconSize: iconSize,
                 icon: LineIcons.table,
                 iconColor: Colors.black,
                 iconActiveColor: greenColor,
@@ -74,9 +76,9 @@ class BottomNavBar extends StatelessWidget {
               ),
               GButton(
                 gap: gap,
-                iconSize: 24,
                 text: 'Профиль',
                 padding: padding,
+                iconSize: iconSize,
                 icon: LineIcons.user,
                 iconColor: Colors.black,
                 iconActiveColor: greenColor,

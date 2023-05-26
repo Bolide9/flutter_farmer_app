@@ -145,8 +145,8 @@ class _FarmerPageState extends State<FarmerPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text("Оценки и отзывы", style: primaryBold),
-                          Row(
-                            children: const [
+                          const Row(
+                            children: [
                               Icon(Icons.star_border_rounded, color: Colors.amber),
                               Text(" 4,9", style: TextStyle(fontSize: 24, color: green)),
                               Text(" / 7", style: TextStyle(fontSize: 24))
@@ -158,7 +158,7 @@ class _FarmerPageState extends State<FarmerPage> {
                             height: 150,
                             child: ExpandablePageView(
                               controller: _pageController,
-                              children: const [ReviewCard(), ReviewCard()],
+                              children: const [ReviewCard(), ReviewCard(), ReviewCard()],
                             ),
                           ),
                           const SizedBox(height: 10),

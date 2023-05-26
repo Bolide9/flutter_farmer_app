@@ -7,6 +7,19 @@ class FarmerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(),
+      body: const SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Placeholder(),
+            Text(""),
+
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -1,12 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_farmer_app/ui/review_card.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class FarmerPage extends StatelessWidget {
+import '../../ui/expandable_page_view.dart';
+
+class FarmerPage extends StatefulWidget {
   const FarmerPage({
     super.key,
   });
 
   @override
+  State<FarmerPage> createState() => _FarmerPageState();
+}
+
+class _FarmerPageState extends State<FarmerPage> {
+  late final PageController _pageController;
+
+  @override
+  void initState() {
+    _pageController = PageController(viewportFraction: 0.92);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    const green = Color(0xFF42AB44);
     const TextStyle secondaryTextStyle =
         TextStyle(fontSize: 12, color: Colors.black54);
     const TextStyle primaryBold = TextStyle(fontWeight: FontWeight.bold);
@@ -37,25 +55,24 @@ class FarmerPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("Название",
+                    const Text("Название",
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold)),
-                    SizedBox(height: 20),
-                    Text(
+                    const SizedBox(height: 20),
+                    const Text(
                         "Love this plugin! Does exactly what it is supposed to do and so far without any real issues. (You might want to review some Dummy Text generation which contains words and even sentences with a meaning and that should not suppose to happen)"),
-                    Text("Все описание",
-                        style: TextStyle(color: Color(0xFF42AB44))),
-                    SizedBox(height: 10),
-                    Divider(),
-                    SizedBox(height: 10),
+                    const Text("Все описание", style: TextStyle(color: green)),
+                    const SizedBox(height: 10),
+                    const Divider(),
+                    const SizedBox(height: 10),
 
                     // Блок условий доставки и оплаты
-                    Align(
+                    const Align(
                       alignment: Alignment.centerLeft,
                       child: Row(
                         children: [
@@ -68,7 +85,7 @@ class FarmerPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Align(
+                    const Align(
                       alignment: Alignment.centerLeft,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -92,13 +109,13 @@ class FarmerPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Divider(),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
+                    const Divider(),
+                    const SizedBox(height: 10),
                     //
 
                     //Блок адреса доставки
-                    Align(
+                    const Align(
                       alignment: Alignment.centerLeft,
                       child: Row(
                         children: [
@@ -111,17 +128,55 @@ class FarmerPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Align(alignment: Alignment.centerLeft, child: Text("г.Урус-Мартан, Бруклинский район, дом 5", style: secondaryTextStyle)),
-                    SizedBox(height: 10),
-                    Divider(),
-                    SizedBox(height: 10),
+                    const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("г.Урус-Мартан, Бруклинский район, дом 5",
+                            style: secondaryTextStyle)),
+                    const SizedBox(height: 10),
+                    const Divider(),
+                    const SizedBox(height: 10),
                     //
 
                     //Блок отзывов и оценок
-                    Align(alignment: Alignment.centerLeft, child: Text("г.Урус-Мартан, Бруклинский район, дом 5", style: secondaryTextStyle)),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("Оценки и отзывы", style: primaryBold),
+                          const Row(
+                            children: [
+                              Icon(Icons.star_border_rounded,
+                                  color: Colors.amber),
+                              Text(" 4,9",
+                                  style: TextStyle(fontSize: 24, color: green)),
+                              Text(" / 7", style: TextStyle(fontSize: 24))
+                            ],
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(16.0),
+                            decoration: BoxDecoration(
+                                border: const Border(),
+                                borderRadius: BorderRadius.circular(5)),
+                            height: 150,
+                            child: ExpandablePageView(
+                              controller: _pageController,
+                              children: const [ReviewCard(), ReviewCard()],
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                              child: ElevatedButton(onPressed: () {  },
+                              child: const Text("Связаться с продавцом", style: primaryBold)),
+                            ),
+                          ),
+                          const SizedBox(height: 10)
 
-
-
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),

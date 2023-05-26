@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_farmer_app/colors.dart';
+import 'package:flutter_farmer_app/map/presentation/map_page.dart';
 import 'package:flutter_farmer_app/reviews/presentation/widgets/review_card.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -27,7 +28,7 @@ class _FarmerPageState extends State<FarmerPage> {
           child: ReviewCard(
             rating: 5,
             userName: 'Test User',
-            reviewComment: 'Test Comment\nTest comment\n\nTest Comment',
+            reviewComment: 'Test Comment\nTest comment\n\nTest Comment\n\nfadsfadsfads',
           ),
         ),
       );
@@ -35,6 +36,96 @@ class _FarmerPageState extends State<FarmerPage> {
 
     return parts;
   }
+
+  Widget _buildReviews() => Align(
+        alignment: Alignment.centerLeft,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const Text(
+                    "Оценки и отзывы",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      Icon(
+                        LineIcons.starAlt,
+                        color: Colors.amber,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8),
+                        child: Text(
+                          "4,9 / 5",
+                          style: TextStyle(
+                            fontSize: 24,
+                            color: greenColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                ],
+              ),
+            ),
+            ExpandablePageView(
+              controller: _pageController,
+              children: _buildReviewCards(),
+            ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 8,
+                right: 8,
+                top: 8,
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: SizedBox(
+                  height: 45,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(greenColor),
+                    ),
+                    onPressed: () {},
+                    child: const Text(
+                      "Связаться с продавцом",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+          ],
+        ),
+      );
+
+  PreferredSizeWidget _buildAppBar() => AppBar(
+        leading: IconButton(
+          onPressed: () {},
+          splashRadius: 25,
+          icon: const Icon(Icons.arrow_back),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            splashRadius: 25,
+            icon: const Icon(Icons.share),
+          ),
+        ],
+      );
 
   @override
   void initState() {
@@ -44,8 +135,6 @@ class _FarmerPageState extends State<FarmerPage> {
 
   @override
   Widget build(BuildContext context) {
-    const green = Color(0xFF42AB44);
-
     const TextStyle secondaryTextStyle = TextStyle(
       fontSize: 12,
       color: Colors.black54,
@@ -56,18 +145,7 @@ class _FarmerPageState extends State<FarmerPage> {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.share),
-          ),
-        ],
-      ),
+      appBar: _buildAppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -110,15 +188,15 @@ class _FarmerPageState extends State<FarmerPage> {
                         fontWeight: FontWeight.w400,
                         color: Colors.black.withOpacity(0.7),
                       ),
-                      maxLines: 6,
+                      maxLines: 4,
                       overflow: TextOverflow.ellipsis,
                     ),
                     const Padding(
-                      padding: EdgeInsets.only(top: 24),
+                      padding: EdgeInsets.only(top: 10),
                       child: Text(
                         "Все описание",
                         style: TextStyle(
-                          color: green,
+                          color: greenColor,
                         ),
                       ),
                     ),
@@ -153,38 +231,34 @@ class _FarmerPageState extends State<FarmerPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: const [
-                            SizedBox(height: 10),
                             Text(
-                              "Минимальная сумма заказа - 1000 ₽",
+                              "\nМинимальная сумма заказа - 1000 ₽",
                               style: secondaryTextStyle,
                             ),
-                            Text("Доставка по всей России", style: secondaryTextStyle),
-                            SizedBox(height: 15),
+                            SizedBox(height: 8),
                             Text.rich(
                               TextSpan(
+                                style: secondaryTextStyle,
                                 children: [
                                   TextSpan(
-                                    text: "Доставка по всей России",
-                                    style: secondaryTextStyle,
+                                    text: 'Доставка по всей России\n',
                                   ),
                                   TextSpan(
-                                    text: "Доставка по всей России",
-                                    style: secondaryTextStyle,
+                                    text: '\nОплата: Наличными, Банковской картой',
                                   ),
                                 ],
                               ),
-                            ),
-                            Text(
-                              "Оплата: Наличными\nБанковской картой",
-                              style: secondaryTextStyle,
                             ),
                           ],
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    const Divider(),
-                    const SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Divider(
+                        color: Colors.black.withOpacity(0.5),
+                      ),
+                    ),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Row(
@@ -201,67 +275,30 @@ class _FarmerPageState extends State<FarmerPage> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 8.0),
-                        child: Text("г.Урус-Мартан, Бруклинский район, дом 5", style: secondaryTextStyle),
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "г.Урус-Мартан, Бруклинский район, дом 5",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black.withOpacity(.7),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        const MapPage(),
+                      ],
                     ),
-                    const SizedBox(height: 10),
-                    const Divider(),
-                    const SizedBox(height: 10),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text("Оценки и отзывы", style: primaryBold),
-                          Row(
-                            children: const [
-                              Icon(
-                                Icons.star_border_rounded,
-                                color: Colors.amber,
-                              ),
-                              Text(
-                                " 4,9",
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  color: green,
-                                ),
-                              ),
-                              Text(
-                                " / 7",
-                                style: TextStyle(
-                                  fontSize: 24,
-                                ),
-                              )
-                            ],
-                          ),
-                          ExpandablePageView(
-                            controller: _pageController,
-                            children: _buildReviewCards(),
-                          ),
-                          const SizedBox(height: 10),
-                          Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                child: const Text(
-                                  "Связаться с продавцом",
-                                  style: primaryBold,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                        ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Divider(
+                        color: Colors.black.withOpacity(0.5),
                       ),
                     ),
                   ],
                 ),
               ),
+              _buildReviews(),
             ],
           ),
         ),

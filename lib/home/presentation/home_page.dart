@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_farmer_app/farmer/presentation/farmer_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -13,6 +12,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) => const Scaffold(
-        body: FarmerPage(),
+        body: SizedBox(),
       );
 }

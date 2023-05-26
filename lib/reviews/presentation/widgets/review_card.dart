@@ -66,13 +66,15 @@ class ReviewCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              reviewComment,
-              maxLines: 2,
-              style: secondaryTextStyle,
-              overflow: TextOverflow.ellipsis,
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                reviewComment,
+                maxLines: 2,
+                style: secondaryTextStyle,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
           ),
         ],

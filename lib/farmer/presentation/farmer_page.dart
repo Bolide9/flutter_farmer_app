@@ -87,26 +87,30 @@ class _FarmerPageState extends State<FarmerPage> {
                     ),
                     const Align(
                       alignment: Alignment.centerLeft,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SizedBox(height: 10),
-                          Text(
-                            "Минимальная сумма заказа - 10000.00\$",
-                            style: secondaryTextStyle,
-                          ),
-                          Text("Доставка по всей России",
-                              style: secondaryTextStyle),
-                          SizedBox(height: 15),
-                          Text(
-                            "Оплата: Наличными, Банковской картой",
-                            style: secondaryTextStyle,
-                          ),
-                          Text(
-                            "Минимальная сумма заказа - 10000.00\$",
-                            style: secondaryTextStyle,
-                          )
-                        ],
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SizedBox(height: 10),
+                            Text(
+                              "Минимальная сумма заказа - 10000.00\$",
+                              style: secondaryTextStyle,
+                            ),
+                            Text("Доставка по всей России",
+                                style: secondaryTextStyle),
+                            SizedBox(height: 15),
+                            Text(
+                              "Оплата: Наличными, Банковской картой",
+                              style: secondaryTextStyle,
+                            ),
+                            Text(
+                              "Минимальная сумма заказа - 10000.00\$",
+                              style: secondaryTextStyle,
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -128,10 +132,14 @@ class _FarmerPageState extends State<FarmerPage> {
                         ],
                       ),
                     ),
+                    const SizedBox(height: 10),
                     const Align(
                         alignment: Alignment.centerLeft,
-                        child: Text("г.Урус-Мартан, Бруклинский район, дом 5",
-                            style: secondaryTextStyle)),
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 8.0),
+                          child: Text("г.Урус-Мартан, Бруклинский район, дом 5",
+                              style: secondaryTextStyle),
+                        )),
                     const SizedBox(height: 10),
                     const Divider(),
                     const SizedBox(height: 10),

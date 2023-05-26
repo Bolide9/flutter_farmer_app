@@ -1,61 +1,93 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_farmer_app/colors.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
-class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({super.key});
+class BottomNavBar extends StatelessWidget {
+  const BottomNavBar({
+    required this.selectedIndex,
+    required this.onChanged,
+    super.key,
+  });
+
+  final int selectedIndex;
+
+  final Function(int index) onChanged;
 
   @override
-  State<BottomNavBar> createState() => _BottomNavBarState();
-}
+  Widget build(BuildContext context) {
+    double gap = 10;
 
-class _BottomNavBarState extends State<BottomNavBar> {
-  @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(
-          bottom: 10,
-          right: 8,
-          left: 8,
-        ),
-        child: GNav(
-          gap: 8,
-          iconSize: 24,
-          haptic: true,
-          tabBorderRadius: 15,
-          curve: Curves.easeOutExpo,
-          rippleColor: Colors.grey.shade800,
-          hoverColor: Colors.grey.shade700,
-          tabBorder: Border.all(color: Colors.grey, width: 1),
-          tabActiveBorder: Border.all(
-            color: Colors.black,
-            width: 1,
-          ),
-          tabShadow: [
-            BoxShadow(color: Colors.grey.withOpacity(0.5), blurRadius: 8),
-          ],
-          duration: const Duration(milliseconds: 900),
-          color: Colors.grey[800],
-          activeColor: Colors.purple,
-          tabBackgroundColor: Colors.purple.withOpacity(0.1),
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          tabs: const [
-            GButton(
-              icon: LineIcons.home,
-              text: 'Home',
-            ),
-            GButton(
-              icon: LineIcons.heart,
-              text: 'Likes',
-            ),
-            GButton(
-              icon: LineIcons.search,
-              text: 'Search',
-            ),
-            GButton(
-              icon: LineIcons.user,
-              text: 'Profile',
+    const padding = EdgeInsets.symmetric(
+      horizontal: 18,
+      vertical: 12,
+    );
+
+    return SafeArea(
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: const BorderRadius.all(Radius.circular(100)),
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 60,
+              spreadRadius: -10,
+              offset: const Offset(0, 25),
+              color: Colors.black.withOpacity(.4),
             )
           ],
         ),
-      );
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 3.0, vertical: 3),
+          child: GNav(
+            tabs: [
+              GButton(
+                gap: gap,
+                iconSize: 24,
+                text: 'Главная',
+                padding: padding,
+                icon: LineIcons.home,
+                iconColor: Colors.black,
+                iconActiveColor: greenColor,
+                backgroundColor: greenColor.withOpacity(.2),
+              ),
+              GButton(
+                gap: gap,
+                iconSize: 24,
+                text: 'Каталог',
+                padding: padding,
+                icon: LineIcons.table,
+                iconColor: Colors.black,
+                iconActiveColor: greenColor,
+                backgroundColor: greenColor.withOpacity(.2),
+              ),
+              GButton(
+                gap: gap,
+                iconSize: 24,
+                text: 'Корзина',
+                padding: padding,
+                iconColor: Colors.black,
+                icon: LineIcons.shoppingCart,
+                iconActiveColor: greenColor,
+                backgroundColor: greenColor.withOpacity(.2),
+              ),
+              GButton(
+                gap: gap,
+                iconSize: 24,
+                text: 'Профиль',
+                padding: padding,
+                icon: LineIcons.user,
+                iconColor: Colors.black,
+                iconActiveColor: greenColor,
+                backgroundColor: greenColor.withOpacity(.2),
+              )
+            ],
+            onTabChange: onChanged,
+            selectedIndex: selectedIndex,
+          ),
+        ),
+      ),
+    );
+  }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FarmerPage extends StatelessWidget {
-  const FarmerPage({
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({
     super.key,
   });
 
@@ -10,4 +10,3 @@ class FarmerPage extends StatelessWidget {
     return const Placeholder();
   }
 }
-  

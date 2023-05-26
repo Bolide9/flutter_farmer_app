@@ -1,16 +1,21 @@
 # flutter_farmer_app
 
-A new Flutter project.
+Кросплатформенное приложение для клиентов
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Сделано:
 
-A few resources to get you started if this is your first Flutter project:
+1. Основной каркас приложения сделан. Проект разбит на модули по принципам Clean Code (Чистая Архитектура).
+2. В роли стейт-менеджера добавлен и используется mobx.
+3. Использована концепция Dependency injection (Внедрение зависимостей).
+4. На данном этапе завершена часть верстки
+5. Cделана подготовка к подключению клиентской части к серверной (папки clients и repositories)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+В работе:
+
+1. Верстка
+2. Бизнес-логика
+3. Отладка ошибок
+

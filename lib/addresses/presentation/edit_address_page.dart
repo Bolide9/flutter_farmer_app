@@ -6,9 +6,7 @@ class EditAddressPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         body: Column(
-          children: [
-            
-          ],
+          children: const [],
         ),
       );
 }

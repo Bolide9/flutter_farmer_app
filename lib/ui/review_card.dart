@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -9,7 +10,6 @@ class ReviewCard extends StatelessWidget {
     const green = Color(0xFF42AB44);
     const TextStyle secondaryTextStyle =
         TextStyle(fontSize: 12, color: Colors.black54);
-    const TextStyle primaryBold = TextStyle(fontWeight: FontWeight.bold);
 
     return Container(
         margin: const EdgeInsets.only(left: 8.0, right: 8.0),
@@ -38,7 +38,9 @@ class ReviewCard extends StatelessWidget {
                       color: Colors.amber,
                       size: 7),
                   onRatingUpdate: (rating) {
-                    print(rating);
+                    if (kDebugMode) {
+                      print(rating);
+                    }
                   },
                 )
               ],

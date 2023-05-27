@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
                   floating: true,
                   pinned: true,
                   expandedHeight: 160.0,
-                  title: const Text("Грозный"),
+                  // title: const Text("Грозный"),
                   actions: [
                     IconButton(
                       onPressed: () {},
@@ -52,28 +52,39 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                   flexibleSpace: FlexibleSpaceBar(
-                    centerTitle: true,
                     title: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: TextField(
-                        style: const TextStyle(fontSize: 10),
-                        decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)), label: const Icon(LineIcons.search)),
-                      ),
-                    ),
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        // child: TextField(
+                        //   style: const TextStyle(fontSize: 10),
+                        //   decoration: InputDecoration(
+                        //       border: OutlineInputBorder(
+                        //           borderRadius: BorderRadius.circular(20.0)),
+                        //       label: const Icon(LineIcons.search)),
+                        // ),
+                        child: const Row(
+                          children: [
+                            Text("Грозный"),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Icon(LineIcons.locationArrow, color: Colors.white70,)
+                          ],
+                        )),
                   ),
                 ),
                 SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) => Container(
+                  delegate: SliverChildListDelegate([
+                    Container(
                       color: const Color(0xFFEEEEEE),
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          Column(
+                          const Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Row(
-                                children: const [
+                                children: [
                                   Expanded(
                                     flex: 1,
                                     child: CustCard(
@@ -90,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                                   )
                                 ],
                               ),
-                              const SizedBox(
+                              SizedBox(
                                 width: double.infinity,
                                 child: CustCard(
                                   color: Colors.cyan,
@@ -99,30 +110,52 @@ class _HomePageState extends State<HomePage> {
                               )
                             ],
                           ),
-                          CustCard(
+                          Card(
                             color: Colors.white30,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      const Text("Лучшие продукты с ферм"),
+                                      const Text(
+                                        "Лучшие продукты с ферм",
+                                        style: TextStyle(fontSize: 16),
+                                      ),
                                       TextButton(
                                         onPressed: () {},
                                         child: const Text("Все >"),
                                       ),
                                     ],
                                   ),
+                                  GridView.builder(
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemBuilder: (context, i) => SizedBox(
+                                      height: 100,
+                                      child: CustCard(
+                                        color: Colors.blueGrey,
+                                        child: Text("$i"),
+                                      ),
+                                    ),
+                                    itemCount: 6,
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 3,
+                                            childAspectRatio: 0.25),
+                                  )
                                 ],
                               ),
                             ),
                           )
                         ],
                       ),
-                    ),
-                  ),
+                    )
+                  ]),
                 ),
               ],
             ),
@@ -142,7 +175,10 @@ class CustCard extends StatelessWidget {
     return Container(
         margin: const EdgeInsets.all(4.0),
         height: 100,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: color, boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 5)]),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: color,
+            boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 5)]),
         child: Center(child: child));
   }
 }

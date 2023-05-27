@@ -49,6 +49,9 @@ flutter:
       - assets/png/vegetables.png
       - assets/png/zlak.png
       - assets/png/food.png
+      - assets/svg/
+      - assets/png/
+      - assets/png/zlak.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

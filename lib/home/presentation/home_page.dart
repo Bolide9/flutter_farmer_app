@@ -62,6 +62,7 @@ class _HomePageState extends State<HomePage> {
                         //       label: const Icon(LineIcons.search)),
                         // ),
                         child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text("Грозный"),
                             SizedBox(

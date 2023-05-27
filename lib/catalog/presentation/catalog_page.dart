@@ -19,18 +19,20 @@ class CatalogPage extends StatelessWidget {
         backgroundColor: greenColor,
       );
 
-  Widget _buildFarmers() => GridView.builder(
+  Widget _buildFarmers(BuildContext context) => GridView.builder(
         shrinkWrap: true,
         itemCount: 5,
         padding: const EdgeInsets.only(top: 12),
-        itemBuilder: (_, __) => const FarmerCard(),
+        itemBuilder: (context, __) => FarmerCard(func: (context) => showModalBottomSheet(context: context, builder: (context) => _bottomSheet()),),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
         ),
       );
 
-  Widget _card(Widget child, String name) => InkWell(
-        onTap: () {},
+  Widget _card(BuildContext context, Widget child, String name) => InkWell(
+        onTap: () {
+
+        },
         child: Container(
           padding: const EdgeInsets.all(8.0),
           margin: const EdgeInsets.all(8.0),
@@ -87,6 +89,18 @@ class CatalogPage extends StatelessWidget {
         ),
       );
 
+  Widget _bottomSheet(){
+    return Container(
+      padding: const EdgeInsets.all(12.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset("png/food.png")
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,12 +118,12 @@ class CatalogPage extends StatelessWidget {
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 children: [
-                  _card(Text("Все"), "png/food.png"),
-                  _card(Text("Овощи"), "png/vegetables.png"),
-                  _card(Text("Фрукты"), "png/fruit.png"),
-                  _card(Text("Ягоды"), "png/berries.png"),
-                  _card(Text("Мясо"), "png/meat.png"),
-                  _card(Text("Злаки"), "png/zlak.png")
+                  _card(context, Text("Все"), "png/food.png"),
+                  _card(context, Text("Овощи"), "png/vegetables.png"),
+                  _card(context, Text("Фрукты"), "png/fruit.png"),
+                  _card(context, Text("Ягоды"), "png/berries.png"),
+                  _card(context, Text("Мясо"), "png/meat.png"),
+                  _card(context, Text("Злаки"), "png/zlak.png")
                 ],
               ),
             ),
@@ -129,7 +143,7 @@ class CatalogPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            _buildFarmers(),
+            _buildFarmers(context),
           ],
         ),
       ),

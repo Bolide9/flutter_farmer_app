@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 
 class FarmerCard extends StatelessWidget {
-  const FarmerCard({
-    super.key,
-  });
+  const FarmerCard({super.key, required this.func});
+
+  final Function func;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -33,19 +33,26 @@ class FarmerCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text.rich(TextSpan(children: [
-                  TextSpan(text: "600\$", style: TextStyle(color: Colors.green)),
+                  TextSpan(
+                      text: "600\$", style: TextStyle(color: Colors.green)),
                   TextSpan(text: " / 1кг")
                 ])),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [Text("4.7"), SizedBox(width: 5,), Icon(LineIcons.star)],
+                  children: [
+                    Text("4.7"),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(LineIcons.star)
+                  ],
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            ElevatedButton(onPressed: () {}, child: Text("Заказать"))
+            ElevatedButton(onPressed: () => func, child: Text("Заказать"))
           ],
         ),
       );
